@@ -3,10 +3,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <modules>
-        <module>simple-bank-account</module>
-        <module>simple-bank-core</module>
-    </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -14,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.amila</groupId>
-    <artifactId>${master.project.artifactId}</artifactId>
+    <artifactId>simple-bank-master</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>simple-bank</name>
     <url>https://github.com/amilajayasooriya/simpal-bank</url>
@@ -22,18 +18,20 @@
     <properties>
         <java.version>11</java.version>
         <org.projectlombok.version>1.18.22</org.projectlombok.version>
-        <master.project.artifactId>simple-bank-master</master.project.artifactId>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -55,7 +53,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
@@ -65,7 +63,7 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>
@@ -89,4 +87,9 @@
             </plugin>
         </plugins>
     </build>
+    <modules>
+        <module>simple-bank-account</module>
+        <module>simple-bank-core</module>
+        <module>simple-bank-model</module>
+    </modules>
 </project>
