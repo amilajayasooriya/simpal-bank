@@ -1,4 +1,4 @@
-package java.core;
+package com.amila.simplebank.core;
 
 import org.junit.jupiter.api.Test;
 
