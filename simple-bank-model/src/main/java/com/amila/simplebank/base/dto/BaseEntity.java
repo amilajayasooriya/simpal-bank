@@ -23,5 +23,6 @@ public class BaseEntity {
 
     @Column(name="CREATED_DATE", updatable=false)
     @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 }

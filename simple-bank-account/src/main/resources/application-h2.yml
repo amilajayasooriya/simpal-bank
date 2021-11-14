@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:file:/data/simple-bank
+    url: jdbc:h2:./data/simple-bank
     username: simplebank-user
     password: simplebank-password
     driverClassName: org.h2.Driver

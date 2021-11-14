@@ -13,11 +13,11 @@ import javax.persistence.Table;
 public class UserEntity extends BaseEntity {
 
     @Column (nullable = false, unique = true)
-    String name;
+    private String name;
 
     @Column (nullable = false, unique = true)
-    String email;
+    private String email;
 
     @Column (nullable = false, unique = true)
-    String nin;
+    private String nin;
 }
