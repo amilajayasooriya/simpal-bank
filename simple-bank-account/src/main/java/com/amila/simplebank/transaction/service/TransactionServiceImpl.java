@@ -37,6 +37,8 @@ public class TransactionServiceImpl extends GenericServiceImpl<TransactionEntity
             } else if (model.getTransactionType() == TransactionType.Debit) {
                 account.setBalance(account.getBalance().subtract(model.getDebitAmount()));
             }
+
+            account.setBalanceDate(model.getValueDate());
             model.setAccount(account);
             return super.create(model);
         } else {

@@ -1,5 +1,6 @@
 package com.amila.simplebank.core.service;
 
+import com.amila.simplebank.account.exception.AccountNotExistException;
 import com.amila.simplebank.base.dto.BaseEntity;
 import com.amila.simplebank.core.repository.GenericRepository;
 import lombok.extern.slf4j.Slf4j;

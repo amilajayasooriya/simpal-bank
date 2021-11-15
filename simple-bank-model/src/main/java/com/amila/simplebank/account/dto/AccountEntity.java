@@ -27,13 +27,13 @@ public class AccountEntity extends BaseEntity {
     @Column(nullable = false)
     private AccountType accountType;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private BigDecimal balance;
 
     @Column(nullable = false)
     private String currency;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDate balanceDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -41,7 +41,7 @@ public class AccountEntity extends BaseEntity {
     @JsonBackReference("user_account")
     private UserEntity user;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
     @JsonManagedReference("account_transaction")
     private List<TransactionEntity> transactionList;
 }

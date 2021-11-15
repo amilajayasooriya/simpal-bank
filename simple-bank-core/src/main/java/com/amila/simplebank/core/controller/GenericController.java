@@ -48,4 +48,29 @@ public class GenericController<T extends BaseEntity> {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<T> update(@RequestBody T model) {
+        log.info("Received request to update");
+        try {
+            return new ResponseEntity<>(genericService.update(model), HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("ServiceException occurred during create method for {}", model);
+            log.error("Error is", e);
+            throw e;
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<UUID> delete(@PathVariable("id") UUID id) {
+        log.info("Received request to delete");
+
+        try {
+            genericService.delete(id);
+            return new ResponseEntity<UUID>(id, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("ServiceException occurred during delete {}", id);
+            throw e;
+        }
+    }
 }
