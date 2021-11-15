@@ -33,7 +33,7 @@ public class GenericServiceImpl<T extends BaseEntity> implements GenericService<
     }
 
     @Override
-    public T create(T model) {
+    public T create(T model) throws Exception {
         return genericRepository.save(model);
     }
 

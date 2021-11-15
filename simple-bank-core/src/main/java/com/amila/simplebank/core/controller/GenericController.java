@@ -1,5 +1,6 @@
 package com.amila.simplebank.core.controller;
 
+import com.amila.simplebank.account.exception.AccountNotExistException;
 import com.amila.simplebank.base.dto.BaseEntity;
 import com.amila.simplebank.core.service.GenericService;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -38,9 +40,12 @@ public class GenericController<T extends BaseEntity> {
         log.info("Received request to create");
         try {
             return new ResponseEntity<>(genericService.create(model), HttpStatus.OK);
+        } catch (AccountNotExistException e) {
+            log.error("AccountNotExistException occurred during create method for {}", model);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         } catch (Exception e) {
             log.error("ServiceException occurred during create method for {}", model);
-            throw e;
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
     }
 }

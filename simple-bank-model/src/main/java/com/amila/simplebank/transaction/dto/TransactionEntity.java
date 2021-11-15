@@ -21,8 +21,8 @@ public class TransactionEntity extends BaseEntity {
     @Column(nullable = false)
     private TransactionType transactionType;
 
-    private BigDecimal debitAccount;
-    private BigDecimal creditAccount;
+    private BigDecimal debitAmount;
+    private BigDecimal creditAmount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACCOUNT_ID", nullable = false)

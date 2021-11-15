@@ -1,6 +1,7 @@
 package com.amila.simplebank.transaction.service;
 
 import com.amila.simplebank.account.dto.AccountEntity;
+import com.amila.simplebank.account.exception.AccountNotExistException;
 import com.amila.simplebank.account.service.AccountService;
 import com.amila.simplebank.core.service.GenericServiceImpl;
 import com.amila.simplebank.transaction.dto.TransactionEntity;
@@ -26,22 +27,20 @@ public class TransactionServiceImpl extends GenericServiceImpl<TransactionEntity
     }
 
     @Override
-    public TransactionEntity create(TransactionEntity model) {
+    public TransactionEntity create(TransactionEntity model) throws Exception {
         Optional<AccountEntity> accountEntityOptional = accountService.findById(model.getAccount().getId());
         
         if(accountEntityOptional.isPresent()) {
             AccountEntity account = accountEntityOptional.get();
             if (model.getTransactionType() == TransactionType.Credit) {
-                model.getAccount().setBalance(account.getBalance().add(model.getCreditAccount()));
-            } else {
-                model.getAccount().setBalance(account.getBalance().subtract(model.getDebitAccount()));
+                account.setBalance(account.getBalance().add(model.getCreditAmount()));
+            } else if (model.getTransactionType() == TransactionType.Debit) {
+                account.setBalance(account.getBalance().subtract(model.getDebitAmount()));
             }
             model.setAccount(account);
-            // update the accout also
             return super.create(model);
         } else {
-            //amila todo thrawexception
-            return null;
+            throw new AccountNotExistException(String.format("Account with id %1$s not exists", model.getAccount().getId()));
         }
     }
 }
