@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"accountNumber\": \"1023675RR1\",\r\n    \"accountName\": \"Peter Jhon1\",\r\n    \"accountType\": \"CURRENT\",\r\n    \"currency\": \"AUD\",\r\n    \"balance\": 365.25,\r\n    \"balanceDate\": \"2021-11-15\",\r\n    \"user\": {\r\n        \"id\": \"067f7dc3-03ea-490e-a4b4-f1772fc93cb7\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"accountNumber\": \"1023675RR1\",\r\n    \"accountName\": \"Peter Jhon1\",\r\n    \"accountType\": \"CURRENT\",\r\n    \"currency\": \"AUD\",\r\n    \"balance\": 365.25,\r\n    \"balanceDate\": \"2021-11-15\",\r\n    \"user\": {\r\n       \"id\": \"478f4c25-913c-4c6f-8bf5-df3ef1d52690\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -101,6 +101,28 @@
 								"simple-bank",
 								"account",
 								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:10444/simple-bank/account/delete/9a3e3fd0-d596-41d6-967d-73d8e1037a5a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "10444",
+							"path": [
+								"simple-bank",
+								"account",
+								"delete",
+								"9a3e3fd0-d596-41d6-967d-73d8e1037a5a"
 							]
 						}
 					},
@@ -136,6 +158,36 @@
 								"simple-bank",
 								"user",
 								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"id\": \"079083ef-32f4-4e1d-a960-902fdc2a4036\",\r\n            \"version\": 1,\r\n            \"createdDate\": \"2021-11-15T13:41:33.167+00:00\",\r\n            \"name\": \"Peter2\",\r\n            \"email\": \"peter_jhon@gmailo.com\",\r\n            \"nin\": \"98454334D\",\r\n            \"accountEntityList\": [\r\n                {\r\n                    \"id\": \"1ca7b787-82a2-411e-8671-b5067d8af844\",\r\n                    \"version\": 0,\r\n                    \"createdDate\": \"2021-11-15T13:41:49.706+00:00\",\r\n                    \"accountNumber\": \"1023675RR1\",\r\n                    \"accountName\": \"Peter Jhon1\",\r\n                    \"accountType\": \"CURRENT\",\r\n                    \"balance\": 365.25,\r\n                    \"currency\": \"AUD\",\r\n                    \"balanceDate\": \"2021-11-15\",\r\n                    \"transactionList\": [\r\n                \r\n                    ]\r\n                }\r\n            ]\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:10444/simple-bank/user/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "10444",
+							"path": [
+								"simple-bank",
+								"user",
+								"update"
 							]
 						}
 					},
@@ -307,6 +359,36 @@
 								"simple-bank",
 								"transaction",
 								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Transaction",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valueDate\": \"2021-11-15\",\r\n    \"transactionType\": \"Credit\",\r\n    \"creditAmount\": \"1100\",\r\n    \"account\": {\r\n        \"id\": \"496aba5e-dd6e-4918-a548-14e08e9559af\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:10444/simple-bank/transaction/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "10444",
+							"path": [
+								"simple-bank",
+								"transaction",
+								"update"
 							]
 						}
 					},
