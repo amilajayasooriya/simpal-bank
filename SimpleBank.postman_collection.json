@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"accountNumber\": \"1023675RR\",\r\n    \"accountName\": \"Peter Jhon\",\r\n    \"accountType\": \"CURRENT\",\r\n    \"currency\": \"AUD\",\r\n    \"balance\": 365.25,\r\n    \"balanceDate\": \"2021-11-15\"\r\n}",
+							"raw": "{\r\n    \"accountNumber\": \"1023675RR1\",\r\n    \"accountName\": \"Peter Jhon1\",\r\n    \"accountType\": \"CURRENT\",\r\n    \"currency\": \"AUD\",\r\n    \"balance\": 365.25,\r\n    \"balanceDate\": \"2021-11-15\",\r\n    \"user\": {\r\n        \"id\": \"067f7dc3-03ea-490e-a4b4-f1772fc93cb7\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -114,9 +114,30 @@
 				{
 					"name": "Create User",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
-						"url": null
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Peter\",\r\n    \"email\": \"peter_jhon@gmailo.com\",\r\n    \"nin\": \"98454334D\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:10444/simple-bank/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "10444",
+							"path": [
+								"simple-bank",
+								"user",
+								"create"
+							]
+						}
 					},
 					"response": []
 				},
@@ -245,7 +266,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/account/get/",
+							"raw": "http://localhost:10444/simple-bank/transaction/get/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -253,7 +274,7 @@
 							"port": "10444",
 							"path": [
 								"simple-bank",
-								"account",
+								"transaction",
 								"get",
 								""
 							]
@@ -268,7 +289,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"valueDate\": \"2021-11-15\",\r\n    \"transactionType\": \"CREDIT\",\r\n    \"creditAccount\": \"1000\",\r\n    \"account\": {\r\n        \"id\": \"a7c3894d-57fc-47d6-a9dc-186183232f18\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"valueDate\": \"2021-11-15\",\r\n    \"transactionType\": \"Credit\",\r\n    \"creditAmount\": \"1000\",\r\n    \"account\": {\r\n        \"id\": \"6bb36dbc-89d4-4f7c-bb27-65132e4ce636\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

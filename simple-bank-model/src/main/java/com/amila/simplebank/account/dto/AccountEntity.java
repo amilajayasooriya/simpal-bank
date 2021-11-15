@@ -2,6 +2,8 @@ package com.amila.simplebank.account.dto;
 
 import com.amila.simplebank.base.dto.BaseEntity;
 import com.amila.simplebank.transaction.dto.TransactionEntity;
+import com.amila.simplebank.user.dto.UserEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,6 +35,11 @@ public class AccountEntity extends BaseEntity {
 
     @Column(nullable = false)
     private LocalDate balanceDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID", nullable = false)
+    @JsonBackReference("user_account")
+    private UserEntity user;
 
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("account_transaction")
