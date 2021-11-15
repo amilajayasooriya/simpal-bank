@@ -11,6 +11,6 @@ public interface GenericService<T extends BaseEntity>{
     Page<T> findAll(Pageable page);
     Optional<T> findById(UUID id);
     T update(T model);
-    T create(T model) throws Exception;
+    T create(T model);
     void delete(UUID id);
 }

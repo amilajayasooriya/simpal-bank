@@ -7,12 +7,14 @@ import com.amila.simplebank.core.service.GenericServiceImpl;
 import com.amila.simplebank.transaction.dto.TransactionEntity;
 import com.amila.simplebank.transaction.dto.TransactionType;
 import com.amila.simplebank.transaction.repository.TransactionRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service("transactionService")
+@Slf4j
 public class TransactionServiceImpl extends GenericServiceImpl<TransactionEntity> implements TransactionService {
     private AccountService accountService;
 
@@ -27,10 +29,10 @@ public class TransactionServiceImpl extends GenericServiceImpl<TransactionEntity
     }
 
     @Override
-    public TransactionEntity create(TransactionEntity model) throws Exception {
+    public TransactionEntity create(TransactionEntity model) {
         Optional<AccountEntity> accountEntityOptional = accountService.findById(model.getAccount().getId());
-        
-        if(accountEntityOptional.isPresent()) {
+
+        if (accountEntityOptional.isPresent()) {
             AccountEntity account = accountEntityOptional.get();
             if (model.getTransactionType() == TransactionType.Credit) {
                 account.setBalance(account.getBalance().add(model.getCreditAmount()));
@@ -40,9 +42,12 @@ public class TransactionServiceImpl extends GenericServiceImpl<TransactionEntity
 
             account.setBalanceDate(model.getValueDate());
             model.setAccount(account);
+            log.info(String.format("Transaction creating for account %1$s", account.getAccountNumber()));
             return super.create(model);
         } else {
-            throw new AccountNotExistException(String.format("Account with id %1$s not exists", model.getAccount().getId()));
+            String error = String.format("Account with id %1$s not exists", model.getAccount().getId());
+            log.error(error);
+            throw new AccountNotExistException(error);
         }
     }
 }

@@ -24,20 +24,20 @@ public class GenericController<T extends BaseEntity> {
     }
 
     @GetMapping(value = "/get/{id}")
-    public Optional<T> get(@PathVariable("id") UUID id) throws Exception {
-        log.info("Received request to get");
+    public Optional<T> get(@PathVariable("id") UUID id) {
+        log.debug("Received get request for id {}", id);
         return genericService.findById(id);
     }
 
     @GetMapping(value = "/get")
-    public Page<T> getAll(Pageable pageable) throws Exception {
-        log.info("Received request to get ALL");
+    public Page<T> getAll(Pageable pageable) {
+        log.debug("Received get ALL request");
         return genericService.findAll(pageable);
     }
 
     @PostMapping("/create")
     public ResponseEntity<T> create(@RequestBody T model) {
-        log.info("Received request to create");
+        log.debug("Received request to create model {}", model);
         try {
             return new ResponseEntity<>(genericService.create(model), HttpStatus.OK);
         } catch (AccountNotExistException e) {
@@ -51,7 +51,7 @@ public class GenericController<T extends BaseEntity> {
 
     @PutMapping("/update")
     public ResponseEntity<T> update(@RequestBody T model) {
-        log.info("Received request to update");
+        log.debug("Received request to update model {}", model);
         try {
             return new ResponseEntity<>(genericService.update(model), HttpStatus.OK);
         } catch (Exception e) {
@@ -63,11 +63,10 @@ public class GenericController<T extends BaseEntity> {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<UUID> delete(@PathVariable("id") UUID id) {
-        log.info("Received request to delete");
-
+        log.debug("Received request to delete model with id {}", id);
         try {
             genericService.delete(id);
-            return new ResponseEntity<UUID>(id, HttpStatus.OK);
+            return new ResponseEntity<>(id, HttpStatus.OK);
         } catch (Exception e) {
             log.error("ServiceException occurred during delete {}", id);
             throw e;

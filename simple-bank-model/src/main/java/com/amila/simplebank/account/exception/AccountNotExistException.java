@@ -1,6 +1,6 @@
 package com.amila.simplebank.account.exception;
 
-public class AccountNotExistException extends Exception{
+public class AccountNotExistException extends RuntimeException{
     public AccountNotExistException() {
     }
 

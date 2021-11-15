@@ -1,6 +1,5 @@
 package com.amila.simplebank.core.service;
 
-import com.amila.simplebank.account.exception.AccountNotExistException;
 import com.amila.simplebank.base.dto.BaseEntity;
 import com.amila.simplebank.core.repository.GenericRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +33,7 @@ public class GenericServiceImpl<T extends BaseEntity> implements GenericService<
     }
 
     @Override
-    public T create(T model) throws Exception {
+    public T create(T model) {
         return genericRepository.save(model);
     }
 
