@@ -1,6 +1,5 @@
 package com.amila.simplebank.core.controller;
 
-import com.amila.simplebank.account.exception.AccountNotExistException;
 import com.amila.simplebank.base.dto.BaseEntity;
 import com.amila.simplebank.core.service.GenericService;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -38,38 +36,19 @@ public class GenericController<T extends BaseEntity> {
     @PostMapping("/create")
     public ResponseEntity<T> create(@RequestBody T model) {
         log.debug("Received request to create model {}", model);
-        try {
-            return new ResponseEntity<>(genericService.create(model), HttpStatus.OK);
-        } catch (AccountNotExistException e) {
-            log.error("AccountNotExistException occurred during create method for {}", model);
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
-        } catch (Exception e) {
-            log.error("ServiceException occurred during create method for {}", model);
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
-        }
+        return new ResponseEntity<>(genericService.create(model), HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<T> update(@RequestBody T model) {
         log.debug("Received request to update model {}", model);
-        try {
-            return new ResponseEntity<>(genericService.update(model), HttpStatus.OK);
-        } catch (Exception e) {
-            log.error("ServiceException occurred during create method for {}", model);
-            log.error("Error is", e);
-            throw e;
-        }
+        return new ResponseEntity<>(genericService.update(model), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<UUID> delete(@PathVariable("id") UUID id) {
         log.debug("Received request to delete model with id {}", id);
-        try {
-            genericService.delete(id);
-            return new ResponseEntity<>(id, HttpStatus.OK);
-        } catch (Exception e) {
-            log.error("ServiceException occurred during delete {}", id);
-            throw e;
-        }
+        genericService.delete(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }

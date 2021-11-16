@@ -7,3 +7,8 @@ spring:
       active: h2
   h2:
     console.enabled: true
+logging:
+  file:
+    name: logs/simple-bank-log.log
+  level:
+    com.amila.simplebank: DEBUG
