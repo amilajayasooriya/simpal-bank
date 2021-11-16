@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"accountNumber\": \"1023675RR1\",\r\n    \"accountName\": \"Peter Jhon1\",\r\n    \"accountType\": \"CURRENT\",\r\n    \"currency\": \"AUD\",\r\n    \"balance\": 365.25,\r\n    \"balanceDate\": \"2021-11-15\",\r\n    \"user\": {\r\n       \"id\": \"478f4c25-913c-4c6f-8bf5-df3ef1d52690\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"accountNumber\": \"1023675RR1\",\r\n    \"accountName\": \"Peter Jhon1\",\r\n    \"accountType\": \"CURRENT\",\r\n    \"currency\": \"AUD\",\r\n    \"balance\": 365.25,\r\n    \"balanceDate\": \"2021-11-15\",\r\n    \"user\": {\r\n      \"id\": \"b5b5e417-a359-456a-80e6-a31aaee6b55a\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -260,6 +260,28 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:10444/simple-bank/user/delete/9a3e3fd0-d596-41d6-967d-73d8e1037a5a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "10444",
+							"path": [
+								"simple-bank",
+								"user",
+								"delete",
+								"9a3e3fd0-d596-41d6-967d-73d8e1037a5a"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -341,7 +363,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"valueDate\": \"2021-11-15\",\r\n    \"transactionType\": \"Credit\",\r\n    \"creditAmount\": \"1000\",\r\n    \"account\": {\r\n        \"id\": \"6bb36dbc-89d4-4f7c-bb27-65132e4ce636\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"valueDate\": \"2021-11-15\",\r\n    \"transactionType\": \"Credit\",\r\n    \"creditAmount\": \"1300\",\r\n    \"debitAmount\": \"1000\",\r\n    \"account\": {\r\n        \"id\": \"c2a3e299-4f19-45b5-96e7-5d25913e04f2\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -389,6 +411,28 @@
 								"simple-bank",
 								"transaction",
 								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Transaction",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:10444/simple-bank/transaction/delete/9a3e3fd0-d596-41d6-967d-73d8e1037a5a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "10444",
+							"path": [
+								"simple-bank",
+								"transaction",
+								"delete",
+								"9a3e3fd0-d596-41d6-967d-73d8e1037a5a"
 							]
 						}
 					},

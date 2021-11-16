@@ -27,13 +27,13 @@ public class AccountEntity extends BaseEntity {
     @Column(nullable = false)
     private AccountType accountType;
 
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false)
     private BigDecimal balance;
 
     @Column(nullable = false)
     private String currency;
 
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false)
     private LocalDate balanceDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

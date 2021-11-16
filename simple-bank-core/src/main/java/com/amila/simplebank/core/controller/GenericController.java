@@ -36,19 +36,19 @@ public class GenericController<T extends BaseEntity> {
     @PostMapping("/create")
     public ResponseEntity<T> create(@RequestBody T model) {
         log.debug("Received request to create model {}", model);
-        return new ResponseEntity<>(genericService.create(model), HttpStatus.OK);
+        return new ResponseEntity<>(genericService.createRecord(model), HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<T> update(@RequestBody T model) {
         log.debug("Received request to update model {}", model);
-        return new ResponseEntity<>(genericService.update(model), HttpStatus.OK);
+        return new ResponseEntity<>(genericService.updateRecord(model), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<UUID> delete(@PathVariable("id") UUID id) {
         log.debug("Received request to delete model with id {}", id);
-        genericService.delete(id);
+        genericService.deleteRecord(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }

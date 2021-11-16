@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/simple_bank_db?serverTimezone=UTC
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: simple_bank_user
+    password: simple_bank_user
+
+  jpa:
+    database: mysql

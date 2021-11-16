@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface GenericService<T extends BaseEntity>{
     Page<T> findAll(Pageable page);
     Optional<T> findById(UUID id);
-    T update(T model);
-    T create(T model);
-    void delete(UUID id);
+    T updateRecord(T model);
+    T createRecord(T model);
+    void deleteRecord(UUID id);
 }

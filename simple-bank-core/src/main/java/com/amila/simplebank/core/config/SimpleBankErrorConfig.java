@@ -29,10 +29,10 @@ public class SimpleBankErrorConfig extends DefaultErrorAttributes {
         Throwable error = this.getError(webRequest);
         String errorCode = String.format("%1$s - %2$s - %3$s", error.getMessage(), applicationName, uniqueKey);
         errorAttributes.put("Simple_Bank_Error_Code", errorCode);
+        errorAttributes.remove("trace");
 
         log.error("errorAttributes:- {}", errorAttributes);
         log.error("Original Error:-", error);
-
         return errorAttributes;
     }
 }
