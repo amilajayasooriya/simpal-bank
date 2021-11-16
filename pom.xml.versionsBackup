@@ -11,7 +11,7 @@
     </parent>
     <groupId>com.amila</groupId>
     <artifactId>simple-bank-master</artifactId>
-    <version>1.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>simple-bank</name>
     <url>https://github.com/amilajayasooriya/simpal-bank</url>
     <description>Code challenge project for Simple Bank application</description>

@@ -4,18 +4,11 @@
     <parent>
         <groupId>com.amila</groupId>
         <artifactId>simple-bank-master</artifactId>
-        <version>1.0.1</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>simple-bank-core</artifactId>
-    <name>simple-bank-core</name>
-    <dependencies>
-        <dependency>
-            <groupId>com.amila</groupId>
-            <artifactId>simple-bank-model</artifactId>
-            <version>1.0.1</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+    <artifactId>simple-bank-model</artifactId>
+    <name>simple-bank-model</name>
+
     <build>
         <plugins>
             <plugin>
