@@ -9,7 +9,7 @@
 			"name": "Account",
 			"item": [
 				{
-					"name": "get account",
+					"name": "Get account",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -26,7 +26,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/account/get/16f56f90-5fd6-4464-8113-7f204b90ab10",
+							"raw": "http://localhost:10444/simple-bank/account/c31d89a9-570c-4c34-adea-ba28a02dd9cb",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -35,15 +35,14 @@
 							"path": [
 								"simple-bank",
 								"account",
-								"get",
-								"16f56f90-5fd6-4464-8113-7f204b90ab10"
+								"c31d89a9-570c-4c34-adea-ba28a02dd9cb"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "get account All",
+					"name": "Get account All",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -60,7 +59,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/account/get/",
+							"raw": "http://localhost:10444/simple-bank/account",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -68,9 +67,7 @@
 							"port": "10444",
 							"path": [
 								"simple-bank",
-								"account",
-								"get",
-								""
+								"account"
 							]
 						}
 					},
@@ -83,7 +80,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"accountNumber\": \"1023675RR1\",\r\n    \"accountName\": \"Peter Jhon1\",\r\n    \"accountType\": \"CURRENT\",\r\n    \"currency\": \"AUD\",\r\n    \"balance\": 365.25,\r\n    \"balanceDate\": \"2021-11-15\",\r\n    \"user\": {\r\n      \"id\": \"b5b5e417-a359-456a-80e6-a31aaee6b55a\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"accountNumber\": \"1023675RR1\",\r\n    \"accountName\": \"Peter Jhon1\",\r\n    \"accountType\": \"CURRENT\",\r\n    \"currency\": \"AUD\",\r\n    \"balance\": 365.25,\r\n    \"balanceDate\": \"2021-11-15\",\r\n    \"user\": {\r\n      \"id\": \"54f37a27-789b-423f-97f3-c5aadc86c97d\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -91,7 +88,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/account/create",
+							"raw": "http://localhost:10444/simple-bank/account",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -99,8 +96,36 @@
 							"port": "10444",
 							"path": [
 								"simple-bank",
-								"account",
-								"create"
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"8479685c-1e80-491c-9dbc-b013c7c9c1e8\",\r\n    \"accountNumber\": \"1023675RR1\",\r\n    \"accountName\": \"Peter Jhon1\",\r\n    \"accountType\": \"CURRENT\",\r\n    \"currency\": \"AUD\",\r\n    \"balance\": 2365.25,\r\n    \"balanceDate\": \"2021-11-16\",\r\n    \"user\": {\r\n      \"id\": \"54f37a27-789b-423f-97f3-c5aadc86c97d\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:10444/simple-bank/account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "10444",
+							"path": [
+								"simple-bank",
+								"account"
 							]
 						}
 					},
@@ -112,7 +137,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/account/delete/9a3e3fd0-d596-41d6-967d-73d8e1037a5a",
+							"raw": "http://localhost:10444/simple-bank/account/54f37a27-789b-423f-97f3-c5aadc86c97d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -121,8 +146,7 @@
 							"path": [
 								"simple-bank",
 								"account",
-								"delete",
-								"9a3e3fd0-d596-41d6-967d-73d8e1037a5a"
+								"54f37a27-789b-423f-97f3-c5aadc86c97d"
 							]
 						}
 					},
@@ -148,7 +172,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/user/create",
+							"raw": "http://localhost:10444/simple-bank/user",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -156,8 +180,7 @@
 							"port": "10444",
 							"path": [
 								"simple-bank",
-								"user",
-								"create"
+								"user"
 							]
 						}
 					},
@@ -170,7 +193,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n            \"id\": \"079083ef-32f4-4e1d-a960-902fdc2a4036\",\r\n            \"version\": 1,\r\n            \"createdDate\": \"2021-11-15T13:41:33.167+00:00\",\r\n            \"name\": \"Peter2\",\r\n            \"email\": \"peter_jhon@gmailo.com\",\r\n            \"nin\": \"98454334D\",\r\n            \"accountEntityList\": [\r\n                {\r\n                    \"id\": \"1ca7b787-82a2-411e-8671-b5067d8af844\",\r\n                    \"version\": 0,\r\n                    \"createdDate\": \"2021-11-15T13:41:49.706+00:00\",\r\n                    \"accountNumber\": \"1023675RR1\",\r\n                    \"accountName\": \"Peter Jhon1\",\r\n                    \"accountType\": \"CURRENT\",\r\n                    \"balance\": 365.25,\r\n                    \"currency\": \"AUD\",\r\n                    \"balanceDate\": \"2021-11-15\",\r\n                    \"transactionList\": [\r\n                \r\n                    ]\r\n                }\r\n            ]\r\n        }",
+							"raw": "{\r\n            \"id\": \"54f37a27-789b-423f-97f3-c5aadc86c97d\",\r\n            \"version\": 0,\r\n            \"createdDate\": \"2021-11-15T13:41:33.167+00:00\",\r\n            \"name\": \"Peter2\",\r\n            \"email\": \"peter_jhon@gmailo.com\",\r\n            \"nin\": \"98454334D\",\r\n            \"accountEntityList\": [\r\n            ]\r\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -178,7 +201,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/user/update",
+							"raw": "http://localhost:10444/simple-bank/user",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -186,8 +209,7 @@
 							"port": "10444",
 							"path": [
 								"simple-bank",
-								"user",
-								"update"
+								"user"
 							]
 						}
 					},
@@ -211,7 +233,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/user/get/",
+							"raw": "http://localhost:10444/simple-bank/user",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -219,9 +241,7 @@
 							"port": "10444",
 							"path": [
 								"simple-bank",
-								"user",
-								"get",
-								""
+								"user"
 							]
 						}
 					},
@@ -245,7 +265,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/user/get/5821906e-4559-11ec-81d3-0242ac130003",
+							"raw": "http://localhost:10444/simple-bank/user/54f37a27-789b-423f-97f3-c5aadc86c97d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -254,8 +274,7 @@
 							"path": [
 								"simple-bank",
 								"user",
-								"get",
-								"5821906e-4559-11ec-81d3-0242ac130003"
+								"54f37a27-789b-423f-97f3-c5aadc86c97d"
 							]
 						}
 					},
@@ -267,7 +286,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/user/delete/9a3e3fd0-d596-41d6-967d-73d8e1037a5a",
+							"raw": "http://localhost:10444/simple-bank/user/54f37a27-789b-423f-97f3-c5aadc86c97d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -276,8 +295,7 @@
 							"path": [
 								"simple-bank",
 								"user",
-								"delete",
-								"9a3e3fd0-d596-41d6-967d-73d8e1037a5a"
+								"54f37a27-789b-423f-97f3-c5aadc86c97d"
 							]
 						}
 					},
@@ -289,7 +307,7 @@
 			"name": "Transaction",
 			"item": [
 				{
-					"name": "get transaction",
+					"name": "Get transaction",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -306,41 +324,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/account/get/16f56f90-5fd6-4464-8113-7f204b90ab10",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "10444",
-							"path": [
-								"simple-bank",
-								"account",
-								"get",
-								"16f56f90-5fd6-4464-8113-7f204b90ab10"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get transaction All",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:10444/simple-bank/transaction/get/",
+							"raw": "http://localhost:10444/simple-bank/transaction/71fa9a33-63db-4802-8a8a-bb3d9ac17a0e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -349,8 +333,39 @@
 							"path": [
 								"simple-bank",
 								"transaction",
-								"get",
-								""
+								"71fa9a33-63db-4802-8a8a-bb3d9ac17a0e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get transaction All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:10444/simple-bank/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "10444",
+							"path": [
+								"simple-bank",
+								"transaction"
 							]
 						}
 					},
@@ -363,7 +378,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"valueDate\": \"2021-11-15\",\r\n    \"transactionType\": \"Credit\",\r\n    \"creditAmount\": \"1300\",\r\n    \"debitAmount\": \"1000\",\r\n    \"account\": {\r\n        \"id\": \"c2a3e299-4f19-45b5-96e7-5d25913e04f2\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"valueDate\": \"2021-11-15\",\r\n    \"transactionType\": \"Credit\",\r\n    \"creditAmount\": \"1300\",\r\n    \"debitAmount\": \"\",\r\n    \"account\": {\r\n         \"id\": \"c31d89a9-570c-4c34-adea-ba28a02dd9cb\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -371,7 +386,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/transaction/create",
+							"raw": "http://localhost:10444/simple-bank/transaction",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -379,8 +394,7 @@
 							"port": "10444",
 							"path": [
 								"simple-bank",
-								"transaction",
-								"create"
+								"transaction"
 							]
 						}
 					},
@@ -393,7 +407,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"valueDate\": \"2021-11-15\",\r\n    \"transactionType\": \"Credit\",\r\n    \"creditAmount\": \"1100\",\r\n    \"account\": {\r\n        \"id\": \"496aba5e-dd6e-4918-a548-14e08e9559af\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"valueDate\": \"2021-11-15\",\r\n    \"transactionType\": \"Credit\",\r\n    \"creditAmount\": \"1100\",\r\n    \"account\": {\r\n        \"id\": \"c31d89a9-570c-4c34-adea-ba28a02dd9cb\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -401,7 +415,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/transaction/update",
+							"raw": "http://localhost:10444/simple-bank/transaction",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -409,8 +423,7 @@
 							"port": "10444",
 							"path": [
 								"simple-bank",
-								"transaction",
-								"update"
+								"transaction"
 							]
 						}
 					},
@@ -422,7 +435,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/transaction/delete/9a3e3fd0-d596-41d6-967d-73d8e1037a5a",
+							"raw": "http://localhost:10444/simple-bank/transaction/c31d89a9-570c-4c34-adea-ba28a02dd9cb",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -431,8 +444,7 @@
 							"path": [
 								"simple-bank",
 								"transaction",
-								"delete",
-								"9a3e3fd0-d596-41d6-967d-73d8e1037a5a"
+								"c31d89a9-570c-4c34-adea-ba28a02dd9cb"
 							]
 						}
 					},
