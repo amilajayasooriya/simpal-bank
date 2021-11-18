@@ -1,10 +1,10 @@
 package com.amila.simplebank.transaction.service;
 
-import com.amila.simplebank.account.dto.AccountEntity;
+import com.amila.simplebank.account.entity.AccountEntity;
 import com.amila.simplebank.account.exception.AccountNotExistException;
 import com.amila.simplebank.account.service.AccountService;
 import com.amila.simplebank.core.service.GenericServiceImpl;
-import com.amila.simplebank.transaction.dto.TransactionEntity;
+import com.amila.simplebank.transaction.entity.TransactionEntity;
 import com.amila.simplebank.transaction.dto.TransactionType;
 import com.amila.simplebank.transaction.repository.TransactionRepository;
 import lombok.extern.slf4j.Slf4j;

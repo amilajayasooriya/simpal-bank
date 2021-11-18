@@ -1,6 +1,6 @@
 package com.amila.simplebank.core.repository;
 
-import com.amila.simplebank.base.dto.BaseEntity;
+import com.amila.simplebank.base.entity.BaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,9 +1,10 @@
-package com.amila.simplebank.user.dto;
+package com.amila.simplebank.user.entity;
 
-import com.amila.simplebank.account.dto.AccountEntity;
-import com.amila.simplebank.base.dto.BaseEntity;
+import com.amila.simplebank.account.entity.AccountEntity;
+import com.amila.simplebank.base.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "USER")
 @Getter
+@Setter
 public class UserEntity extends BaseEntity {
 
     @Column (nullable = false, unique = true)

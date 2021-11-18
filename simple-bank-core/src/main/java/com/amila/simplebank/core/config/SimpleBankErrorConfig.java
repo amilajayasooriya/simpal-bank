@@ -27,7 +27,7 @@ public class SimpleBankErrorConfig extends DefaultErrorAttributes {
         Map<String, Object> errorAttributes = super.getErrorAttributes(webRequest, options);
 
         Throwable error = this.getError(webRequest);
-        String errorCode = String.format("%1$s - %2$s - %3$s", error.getMessage(), applicationName, uniqueKey);
+        String errorCode = String.format("%1$s - %2$s - %3$s", error != null? error.getMessage(): "NO_EXCEPTION", applicationName, uniqueKey);
         errorAttributes.put("Simple_Bank_Error_Code", errorCode);
         errorAttributes.remove("trace");
 

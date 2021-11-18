@@ -1,7 +1,8 @@
-package com.amila.simplebank.transaction.dto;
+package com.amila.simplebank.transaction.entity;
 
-import com.amila.simplebank.account.dto.AccountEntity;
-import com.amila.simplebank.base.dto.BaseEntity;
+import com.amila.simplebank.account.entity.AccountEntity;
+import com.amila.simplebank.base.entity.BaseEntity;
+import com.amila.simplebank.transaction.dto.TransactionType;
 import com.amila.simplebank.transaction.exception.InvalidTransactionOperationException;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;

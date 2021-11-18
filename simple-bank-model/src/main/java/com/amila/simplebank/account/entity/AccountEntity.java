@@ -1,8 +1,9 @@
-package com.amila.simplebank.account.dto;
+package com.amila.simplebank.account.entity;
 
-import com.amila.simplebank.base.dto.BaseEntity;
-import com.amila.simplebank.transaction.dto.TransactionEntity;
-import com.amila.simplebank.user.dto.UserEntity;
+import com.amila.simplebank.account.dto.AccountType;
+import com.amila.simplebank.base.entity.BaseEntity;
+import com.amila.simplebank.transaction.entity.TransactionEntity;
+import com.amila.simplebank.user.entity.UserEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;

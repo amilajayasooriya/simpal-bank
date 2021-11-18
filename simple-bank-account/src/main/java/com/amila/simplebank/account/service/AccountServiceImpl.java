@@ -1,11 +1,11 @@
 package com.amila.simplebank.account.service;
 
-import com.amila.simplebank.account.dto.AccountEntity;
+import com.amila.simplebank.account.entity.AccountEntity;
 import com.amila.simplebank.account.repository.AccountRepository;
 import com.amila.simplebank.core.exception.ServiceException;
 import com.amila.simplebank.core.service.GenericServiceImpl;
-import com.amila.simplebank.transaction.dto.TransactionEntity;
 import com.amila.simplebank.transaction.dto.TransactionType;
+import com.amila.simplebank.transaction.entity.TransactionEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,7 +49,7 @@ public class AccountServiceImpl extends GenericServiceImpl<AccountEntity> implem
                 throw new ServiceException(error);
             }
 
-            if(!model.getBalance().equals(account.getBalance())){
+            if(model.getBalance().compareTo(account.getBalance()) != 0){
                 String error = String.format("Account number %1$s not allowed to update balance", model.getAccountNumber());
                 log.error(error);
                 throw new ServiceException(error);

@@ -1,4 +1,4 @@
-package com.amila.simplebank.base.dto;
+package com.amila.simplebank.base.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @MappedSuperclass
 @Getter
+@Setter
 public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "HIBERNATE_SEQUENCE")
