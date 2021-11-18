@@ -1,0 +1,1 @@
+copy simple-bank-account\target\*.jar .\executable
