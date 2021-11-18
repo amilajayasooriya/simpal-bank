@@ -109,7 +109,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"8479685c-1e80-491c-9dbc-b013c7c9c1e8\",\r\n    \"accountNumber\": \"1023675RR1\",\r\n    \"accountName\": \"Peter Jhon1\",\r\n    \"accountType\": \"CURRENT\",\r\n    \"currency\": \"AUD\",\r\n    \"balance\": 2365.25,\r\n    \"balanceDate\": \"2021-11-16\",\r\n    \"user\": {\r\n      \"id\": \"54f37a27-789b-423f-97f3-c5aadc86c97d\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\": \"c31d89a9-570c-4c34-adea-ba28a02dd9cb\",\r\n    \"accountNumber\": \"1023675RR1\",\r\n    \"accountName\": \"Peter Jhon1\",\r\n    \"accountType\": \"CURRENT\",\r\n    \"currency\": \"AUD\",\r\n    \"balance\": 2365.25,\r\n    \"balanceDate\": \"2021-11-16\",\r\n    \"user\": {\r\n      \"id\": \"54f37a27-789b-423f-97f3-c5aadc86c97d\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -137,7 +137,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/account/54f37a27-789b-423f-97f3-c5aadc86c97d",
+							"raw": "http://localhost:10444/simple-bank/account/c31d89a9-570c-4c34-adea-ba28a02dd9cb",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -146,7 +146,7 @@
 							"path": [
 								"simple-bank",
 								"account",
-								"54f37a27-789b-423f-97f3-c5aadc86c97d"
+								"c31d89a9-570c-4c34-adea-ba28a02dd9cb"
 							]
 						}
 					},
@@ -435,7 +435,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:10444/simple-bank/transaction/c31d89a9-570c-4c34-adea-ba28a02dd9cb",
+							"raw": "http://localhost:10444/simple-bank/transaction/71fa9a33-63db-4802-8a8a-bb3d9ac17a0e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -444,7 +444,7 @@
 							"path": [
 								"simple-bank",
 								"transaction",
-								"c31d89a9-570c-4c34-adea-ba28a02dd9cb"
+								"71fa9a33-63db-4802-8a8a-bb3d9ac17a0e"
 							]
 						}
 					},
