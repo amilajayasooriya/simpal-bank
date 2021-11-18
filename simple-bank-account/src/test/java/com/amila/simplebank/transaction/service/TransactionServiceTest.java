@@ -3,12 +3,11 @@ package com.amila.simplebank.transaction.service;
 import com.amila.simplebank.account.dto.AccountType;
 import com.amila.simplebank.account.entity.AccountEntity;
 import com.amila.simplebank.account.service.AccountService;
-import com.amila.simplebank.core.exception.ServiceException;
 import com.amila.simplebank.transaction.dto.TransactionType;
 import com.amila.simplebank.transaction.entity.TransactionEntity;
+import com.amila.simplebank.transaction.exception.InvalidTransactionOperationException;
 import com.amila.simplebank.user.entity.UserEntity;
 import com.amila.simplebank.user.service.UserService;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,10 +19,9 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -31,14 +29,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class TransactionServiceTest {
     private AccountService accountService;
     private UserService userService;
-    private  TransactionService transactionService;
+    private TransactionService transactionService;
 
+    private TransactionEntity transactionEntity;
     private AccountEntity accountEntity;
-
-    @BeforeAll
-    static void beforeAll() {
-
-    }
 
     @Autowired
     public void setAccountService(AccountService accountService) {
@@ -48,6 +42,11 @@ class TransactionServiceTest {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
     }
 
     @BeforeEach
@@ -67,80 +66,37 @@ class TransactionServiceTest {
         accountEntity.setCurrency("AUD");
         accountEntity.setTransactionList(Collections.emptyList());
         accountEntity.setUser(userEntity);
+        accountEntity = accountService.createRecord(accountEntity);
+
+        transactionEntity = new TransactionEntity();
+        transactionEntity.setTransactionType(TransactionType.Credit);
+        transactionEntity.setValueDate(LocalDate.now());
+        transactionEntity.setCreditAmount(BigDecimal.valueOf(600));
+        transactionEntity.setAccount(accountEntity);
     }
 
     @Test
-    @DisplayName("Test user create via service layer")
+    @DisplayName("Test transaction create via service layer")
     void createServiceTest() {
-        AccountEntity createdAccount = accountService.createRecord(accountEntity);
-        assertNotNull(createdAccount);
+        TransactionEntity transactionEntityCreated = transactionService.createRecord(transactionEntity);
+        assertNotNull(transactionEntityCreated);
     }
 
     @Test
-    @DisplayName("Test user ID generated via service layer")
+    @DisplayName("Test transaction ID generated via service layer")
     void createServiceIDAutoGenTest() {
-        AccountEntity createdAccount = accountService.createRecord(accountEntity);
-        assertNotNull(createdAccount.getId());
+        TransactionEntity transactionEntityCreated = transactionService.createRecord(transactionEntity);
+        assertNotNull(transactionEntityCreated.getId());
     }
 
     @Test
-    @DisplayName("Test user Update via service layer")
-    void updateServiceIDAutoGenTest() {
-        String newName = "Thomas";
-        AccountEntity accountEntitySaved = accountService.createRecord(accountEntity);
-        accountEntitySaved.setAccountName(newName);
-        accountService.updateRecord(accountEntitySaved);
+    @DisplayName("Test Negative update Transaction")
+    void updateServiceTransactionNegativeTest() {
+        TransactionEntity transactionEntityCreated = transactionService.createRecord(transactionEntity);
+        transactionEntityCreated.setValueDate(LocalDate.now().minusDays(10));
 
-        Optional<AccountEntity> fromDbOptional = accountService.findById(accountEntity.getId());
-
-        assertEquals(fromDbOptional.get().getAccountName(), newName);
+        InvalidTransactionOperationException thrown = assertThrows(
+                InvalidTransactionOperationException.class,
+                () -> transactionService.updateRecord(transactionEntityCreated));
     }
-
-    @Test
-    @DisplayName("Test initial transaction created")
-    void testInitialTransaction() {
-        AccountEntity createdAccount = accountService.createRecord(accountEntity);
-        assertEquals(1, createdAccount.getTransactionList().size());
-    }
-
-    @Test
-    @DisplayName("Test initial transaction Amount")
-    void testInitialTransactionAmount() {
-        AccountEntity createdAccount = accountService.createRecord(accountEntity);
-        List<TransactionEntity> transactionEntityList = createdAccount.getTransactionList();
-
-        assertEquals(transactionEntityList.get(0).getCreditAmount(), accountEntity.getBalance());
-    }
-
-    @Test
-    @DisplayName("Test initial transaction Amount")
-    void testInitialTransactionType() {
-        AccountEntity createdAccount = accountService.createRecord(accountEntity);
-        List<TransactionEntity> transactionEntityList = createdAccount.getTransactionList();
-
-        assertEquals(TransactionType.Credit, transactionEntityList.get(0).getTransactionType());
-    }
-
-    @Test
-    @DisplayName("Test transaction Amount update NegativeTest")
-    void testUpdateBalanceNegativeUpdateBalance() {
-        AccountEntity accountEntitySaved = accountService.createRecord(accountEntity);
-        accountEntitySaved.setBalance(BigDecimal.valueOf(600));
-
-        ServiceException thrown = assertThrows(
-                ServiceException.class,
-                () -> accountService.updateRecord(accountEntitySaved));
-    }
-
-    @Test
-    @DisplayName("Test transaction Date update NegativeTest")
-    void testUpdateDateNegativeUpdateBalance() {
-        AccountEntity accountEntitySaved = accountService.createRecord(accountEntity);
-        accountEntitySaved.setBalanceDate(LocalDate.now().minusDays(5));
-
-        ServiceException thrown = assertThrows(
-                ServiceException.class,
-                () -> accountService.updateRecord(accountEntitySaved));
-    }
-
 }

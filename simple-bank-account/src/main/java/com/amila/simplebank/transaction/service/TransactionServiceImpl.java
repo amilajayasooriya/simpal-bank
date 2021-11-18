@@ -4,14 +4,16 @@ import com.amila.simplebank.account.entity.AccountEntity;
 import com.amila.simplebank.account.exception.AccountNotExistException;
 import com.amila.simplebank.account.service.AccountService;
 import com.amila.simplebank.core.service.GenericServiceImpl;
-import com.amila.simplebank.transaction.entity.TransactionEntity;
 import com.amila.simplebank.transaction.dto.TransactionType;
+import com.amila.simplebank.transaction.entity.TransactionEntity;
+import com.amila.simplebank.transaction.exception.InvalidTransactionOperationException;
 import com.amila.simplebank.transaction.repository.TransactionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service("transactionService")
 @Slf4j
@@ -49,5 +51,15 @@ public class TransactionServiceImpl extends GenericServiceImpl<TransactionEntity
             log.error(error);
             throw new AccountNotExistException(error);
         }
+    }
+
+    @Override
+    protected void preValidateUpdate(TransactionEntity model) {
+        throw new InvalidTransactionOperationException("Update of transaction not allowed");
+    }
+
+    @Override
+    protected void delete(UUID id) {
+        throw new InvalidTransactionOperationException("Delete of transaction not allowed");
     }
 }

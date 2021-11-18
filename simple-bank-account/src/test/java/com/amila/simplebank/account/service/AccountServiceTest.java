@@ -7,7 +7,6 @@ import com.amila.simplebank.transaction.dto.TransactionType;
 import com.amila.simplebank.transaction.entity.TransactionEntity;
 import com.amila.simplebank.user.entity.UserEntity;
 import com.amila.simplebank.user.service.UserService;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,11 +31,6 @@ class AccountServiceTest {
     private UserService userService;
 
     private AccountEntity accountEntity;
-
-    @BeforeAll
-    static void beforeAll() {
-
-    }
 
     @Autowired
     public void setAccountService(AccountService accountService) {
@@ -75,14 +69,14 @@ class AccountServiceTest {
     }
 
     @Test
-    @DisplayName("Test user ID generated via service layer")
+    @DisplayName("Test account ID generated via service layer")
     void createServiceIDAutoGenTest() {
         AccountEntity createdAccount = accountService.createRecord(accountEntity);
         assertNotNull(createdAccount.getId());
     }
 
     @Test
-    @DisplayName("Test user Update via service layer")
+    @DisplayName("Test account Update via service layer")
     void updateServiceIDAutoGenTest() {
         String newName = "Thomas";
         AccountEntity accountEntitySaved = accountService.createRecord(accountEntity);

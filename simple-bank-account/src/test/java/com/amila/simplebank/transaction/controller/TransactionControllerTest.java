@@ -39,6 +39,7 @@ class TransactionControllerTest {
 
     private TransactionService transactionService;
     private TransactionDTO transactionDTO;
+    private AccountDTO accountDTO;
 
     @LocalServerPort
     public void setUrl(int port) {
@@ -66,7 +67,7 @@ class TransactionControllerTest {
 
         ResponseEntity<UserDTO> userDTOResponse = restTemplate.postForEntity(userUrl, userDTO, UserDTO.class);
 
-        AccountDTO accountDTO = new AccountDTO();
+        accountDTO = new AccountDTO();
         accountDTO.setAccountName("Martin Anderson");
         accountDTO.setAccountNumber("109343842234");
         accountDTO.setAccountType(AccountType.SAVINGS);
@@ -77,12 +78,13 @@ class TransactionControllerTest {
         accountDTO.setUser(userDTOResponse.getBody());
 
         ResponseEntity<AccountDTO> accountDTOResponse = restTemplate.postForEntity(accountUrl, accountDTO, AccountDTO.class);
+        accountDTO = accountDTOResponse.getBody();
 
         transactionDTO = new TransactionDTO();
-        transactionDTO.setTransactionType(TransactionType.Debit);
-        transactionDTO.setDebitAmount(BigDecimal.valueOf(100));
+        transactionDTO.setTransactionType(TransactionType.Credit);
+        transactionDTO.setCreditAmount(BigDecimal.valueOf(100));
         transactionDTO.setValueDate(LocalDate.now());
-        transactionDTO.setAccount(accountDTOResponse.getBody());
+        transactionDTO.setAccount(accountDTO);
     }
 
     @Test
@@ -109,5 +111,52 @@ class TransactionControllerTest {
 
         //should not be allowed to update transaction
         assertNotEquals(fromDbOptional.get().getCreditAmount(), newAmount);
+    }
+
+    @Test
+    @DisplayName("Test transactions sum and Account balance")
+    void testTransactionSumAndAccountBalance() {
+        restTemplate.postForEntity(url, transactionDTO, TransactionDTO.class);
+
+        BigDecimal newValue = BigDecimal.valueOf(2000);
+
+        TransactionDTO secondTransaction = new TransactionDTO();
+        secondTransaction.setTransactionType(TransactionType.Credit);
+        secondTransaction.setValueDate(LocalDate.now());
+        secondTransaction.setCreditAmount(newValue);
+        secondTransaction.setAccount(accountDTO);
+        restTemplate.postForEntity(url, secondTransaction, TransactionDTO.class);
+
+        ResponseEntity<AccountDTO> accountDTOResponseEntity = restTemplate.getForEntity(accountUrl + "/" + accountDTO.getId().toString(), AccountDTO.class);
+        AccountDTO accountEntityFromDB = accountDTOResponseEntity.getBody();
+
+        BigDecimal transActionSum = accountEntityFromDB.getTransactionList().stream().map(TransactionDTO::getCreditAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal accountBalance = accountEntityFromDB.getBalance();
+
+        assertEquals(transActionSum, accountBalance);
+    }
+
+    @Test
+    @DisplayName("Test transactions Date and Balanced Date")
+    void testTransactionDateAndAccountDate() {
+        restTemplate.postForEntity(url, transactionDTO, TransactionDTO.class);
+
+        BigDecimal newValue = BigDecimal.valueOf(2000);
+
+        TransactionDTO secondTransaction = new TransactionDTO();
+        secondTransaction.setTransactionType(TransactionType.Credit);
+        secondTransaction.setValueDate(LocalDate.now());
+        secondTransaction.setCreditAmount(newValue);
+        secondTransaction.setAccount(accountDTO);
+        restTemplate.postForEntity(url, secondTransaction, TransactionDTO.class);
+
+        ResponseEntity<AccountDTO> accountDTOResponseEntity = restTemplate.getForEntity(accountUrl + "/" + accountDTO.getId().toString(), AccountDTO.class);
+        AccountDTO accountEntityFromDB = accountDTOResponseEntity.getBody();
+
+        LocalDate latestDate = accountEntityFromDB.getTransactionList().stream().map(TransactionDTO::getValueDate)
+                .max(LocalDate::compareTo).get();
+        LocalDate accountDate = accountEntityFromDB.getBalanceDate();
+
+        assertEquals(latestDate, accountDate);
     }
 }

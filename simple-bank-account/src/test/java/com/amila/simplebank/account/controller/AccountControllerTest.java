@@ -5,8 +5,6 @@ import com.amila.simplebank.account.dto.AccountType;
 import com.amila.simplebank.account.entity.AccountEntity;
 import com.amila.simplebank.account.service.AccountService;
 import com.amila.simplebank.user.dto.UserDTO;
-import com.amila.simplebank.user.entity.UserEntity;
-import com.amila.simplebank.user.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +13,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
